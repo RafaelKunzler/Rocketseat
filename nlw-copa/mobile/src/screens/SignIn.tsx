@@ -3,7 +3,7 @@ import { Fontisto } from '@expo/vector-icons'
 import { useAuth } from "../hooks/useAuth";
 
 import Logo from '../assets/logo.svg'
-import { Button } from "../components/button";
+import { Button } from "../components/Button";
 
 export function SignIn(){
     const { signIn, user }= useAuth()
