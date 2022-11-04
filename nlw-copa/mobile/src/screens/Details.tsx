@@ -1,8 +1,10 @@
 import { HStack, useToast, VStack } from "native-base";
+import { Share } from "react-native";
 import { useRoute } from '@react-navigation/native'
 
 import { api } from "../services/api";
 
+import { Guesses } from "../components/Guesses";
 import { Header } from "../components/Header";
 import { useEffect, useState } from "react";
 import { Loading } from "../components/Loading";
@@ -45,6 +47,13 @@ export function Details() {
         }
     }
 
+    async function handleCodeShare() {
+        await Share.share({
+            message: poolDetails.code
+        });
+
+    }
+
     useEffect(() => {
         fetchPoolsDetails();
     }, [id]);
@@ -58,7 +67,12 @@ export function Details() {
 
     return(
         <VStack flex={1} bgColor="gray.900">
-            <Header title={id} showBackButton showShareButton/>
+            <Header 
+                title={poolDetails.title} 
+                showBackButton 
+                showShareButton
+                onShare={handleCodeShare}
+            />
             {
                 poolDetails._count?.participant > 0 ?
                 <VStack px={5} flex={1}>
@@ -78,6 +92,8 @@ export function Details() {
                         />
 
                     </HStack>
+
+                    <Guesses poolId={poolDetails.id}/>
 
                 </VStack>
 
