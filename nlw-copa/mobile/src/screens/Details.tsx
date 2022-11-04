@@ -51,7 +51,6 @@ export function Details() {
         await Share.share({
             message: poolDetails.code
         });
-
     }
 
     useEffect(() => {
@@ -93,7 +92,7 @@ export function Details() {
 
                     </HStack>
 
-                    <Guesses poolId={poolDetails.id}/>
+                    <Guesses poolId={poolDetails.id} code={poolDetails.code}/>
 
                 </VStack>
 
